@@ -1,31 +1,23 @@
 .columns-area__footer {
   position: fixed;
-  bottom: 16px;   // 화면 아래에서 약간 띄우기
-  left: 16px;     // 화면 왼쪽에서 약간 띄우기
-  width: auto;    // 전체 폭 대신 내용 크기만
-  background: var(--background-color); // 테마 배경색
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 8px 12px;
-  text-align: center;
-  z-index: 1000;
+  bottom: 16px;
+  right: 16px;
+  z-index: 9999;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
-.custom-audio-player {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-
-  button {
-    background: var(--accent-color);       // 테마 포인트 색상
-    color: var(--background-color);        // 버튼 텍스트 색상
-    border: none;
-    border-radius: 4px;
-    font-size: 1.2rem;
-    padding: 6px 12px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-
+.custom-audio-player button {
+  background: var(--accent-color);
+  color:var(--background-color);
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  
     &:hover {
       background: var(--accent-color--hover);
     }
