@@ -28,7 +28,7 @@ import ComposePanel from './compose_panel';
 import DrawerLoading from './drawer_loading';
 import NavigationPanel from './navigation_panel';
 
-import CustomAudioPlayer from '../../../components/custom_audio_player'; // ✅ 오디오 플레이어 import
+import CustomAudioPlayer from '../../../components/custom_audio_player';
 
 const componentMap = {
   'COMPOSE': Compose,
@@ -139,7 +139,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
   };
 
   render () {
-    const { columns, children, isModalOpen } = this.props;
+    const { columns, children, isModalOpen, singleColumn } = this.props;
 
     return (
       <div className={`columns-area ${ isModalOpen ? 'unscrollable' : '' }`} ref={this.setRef}>
@@ -168,13 +168,20 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
         {Children.map(children, child => cloneElement(child, { multiColumn: true }))}
 
-        {/* ✅ 데스크톱 사이드바 영역 */}
-        <div className='columns-area__panels__pane columns-area__panels__pane--start columns-area__panels__pane--navigational'>
-          <div className='columns-area__panels__pane__inner'>
+        {singleColumn && (
+          <div className='columns-area__panels__pane columns-area__panels__pane--navigational'>
             <NavigationPanel />
-            <CustomAudioPlayer src="/audio/music.mp3" />
           </div>
-        </div>
+        )}
+
+        {!singleColumn && (
+          <div className='columns-area__panels__pane columns-area__panels__pane--start columns-area__panels__pane--navigational'>
+            <div className='columns-area__panels__pane__inner'>
+              <NavigationPanel />
+              <CustomAudioPlayer src="/audio/music.mp3" />
+            </div>
+          </div>
+        )}
       </div>
     );
   }
