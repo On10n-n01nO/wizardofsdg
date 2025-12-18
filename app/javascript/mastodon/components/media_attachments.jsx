@@ -1,16 +1,13 @@
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-
 import noop from 'lodash/noop';
 
 import Bundle from 'mastodon/features/ui/components/bundle';
-import { MediaGallery, Video } from 'mastodon/features/ui/util/async-components';
-
-import CustomAudioPlayer from './custom_audio_player';
+import { MediaGallery, Video, Audio } from 'mastodon/features/ui/util/async-components';
+import CustomAudioPlayer from './custom_audio_player'; // ✅ import 위치 수정
 
 export default class MediaAttachments extends ImmutablePureComponent {
-
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
     lang: PropTypes.string,
@@ -23,27 +20,24 @@ export default class MediaAttachments extends ImmutablePureComponent {
     width: 239,
   };
 
-  updateOnProps = [
-    'status',
-  ];
+  updateOnProps = ['status'];
 
   renderLoadingMediaGallery = () => {
     const { height, width } = this.props;
-
-    return (
-      <div className='media-gallery' style={{ height, width }} />
-    );
+    return <div className='media-gallery' style={{ height, width }} />;
   };
 
   renderLoadingVideoPlayer = () => {
     const { height, width } = this.props;
-
-    return (
-      <div className='video-player' style={{ height, width }} />
-    );
+    return <div className='video-player' style={{ height, width }} />;
   };
 
-  render () {
+  renderLoadingAudioPlayer = () => {
+    const { height, width } = this.props;
+    return <div className='audio-player' style={{ height, width }} />;
+  };
+
+  render() {
     const { status, width, height } = this.props;
     const mediaAttachments = status.get('media_attachments');
     const language = status.getIn(['language', 'translation']) || status.get('language') || this.props.lang;
@@ -52,10 +46,9 @@ export default class MediaAttachments extends ImmutablePureComponent {
       return null;
     }
 
-    // -----------------------------
-    // 🔊 AUDIO 분기 — CustomAudioPlayer로 교체됨
-    // -----------------------------
-    if (mediaAttachments.getIn([0, 'type']) === 'audio') {
+    const type = mediaAttachments.getIn([0, 'type']);
+
+    if (type === 'audio') {
       const audio = mediaAttachments.get(0);
       const description = audio.getIn(['translation', 'description']) || audio.get('description');
 
@@ -63,27 +56,14 @@ export default class MediaAttachments extends ImmutablePureComponent {
         <CustomAudioPlayer
           src={audio.get('url')}
           alt={description}
-          lang={language}
-          width={width}
-          height={height}
-          poster={audio.get('preview_url') || status.getIn(['account', 'avatar_static'])}
-          backgroundColor={audio.getIn(['meta', 'colors', 'background'])}
-          foregroundColor={audio.getIn(['meta', 'colors', 'foreground'])}
-          accentColor={audio.getIn(['meta', 'colors', 'accent'])}
-          duration={audio.getIn(['meta', 'original', 'duration'], 0)}
         />
       );
-    }
-
-    // -----------------------------
-    // 🎥 VIDEO 분기 (기존 그대로)
-    // -----------------------------
-    if (mediaAttachments.getIn([0, 'type']) === 'video') {
+    } else if (type === 'video') {
       const video = mediaAttachments.get(0);
       const description = video.getIn(['translation', 'description']) || video.get('description');
 
       return (
-        <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer} >
+        <Bundle fetchComponent={Video} loading={this.renderLoadingVideoPlayer}>
           {Component => (
             <Component
               preview={video.get('preview_url')}
@@ -101,24 +81,21 @@ export default class MediaAttachments extends ImmutablePureComponent {
           )}
         </Bundle>
       );
+    } else {
+      return (
+        <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery}>
+          {Component => (
+            <Component
+              media={mediaAttachments}
+              lang={language}
+              sensitive={status.get('sensitive')}
+              defaultWidth={width}
+              height={height}
+              onOpenMedia={noop}
+            />
+          )}
+        </Bundle>
+      );
     }
-
-    // -----------------------------
-    // 🖼️ IMAGE / GALLERY 분기 (기존 그대로)
-    // -----------------------------
-    return (
-      <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} >
-        {Component => (
-          <Component
-            media={mediaAttachments}
-            lang={language}
-            sensitive={status.get('sensitive')}
-            defaultWidth={width}
-            height={height}
-            onOpenMedia={noop}
-          />
-        )}
-      </Bundle>
-    );
   }
 }
