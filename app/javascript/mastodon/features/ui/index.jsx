@@ -32,21 +32,7 @@ import LoadingBarContainer from './containers/loading_bar_container';
 import ModalContainer from './containers/modal_container';
 import NotificationsContainer from './containers/notifications_container';
 
-import { useLocation } from 'react-router-dom';
 import CustomAudioUI from './custom_audio';
-
-const UI = () => {
-  const location = useLocation();
-
-  return (
-    <div className="ui">
-      <Navigation />
-      <MainContent />
-
-      {location.pathname !== '/settings' && <CustomAudioUI />}
-    </div>
-  );
-};
 
 import {
   Compose,
@@ -620,4 +606,18 @@ class UI extends PureComponent {
 
 }
 
-export default connect(mapStateToProps)(injectIntl(withRouter(UI)));
+render() {
+  const { location } = this.props; // withRouter로 감싸져 있어야 함
+  return (
+    <div className="ui">
+      <Navigation />
+      <MainContent />
+
+      {location && location.pathname !== '/settings' && (
+        <CustomAudioUI />
+      )}
+    </div>
+  );
+}
+
+export default withRouter(connect(mapStateToProps)(injectIntl(UI)));
