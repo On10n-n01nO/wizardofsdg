@@ -33,7 +33,7 @@ import ModalContainer from './containers/modal_container';
 import NotificationsContainer from './containers/notifications_container';
 
 import { useLocation } from 'react-router-dom';
-import CustomAudioPlayer from '../../../components/custom_audio_player';
+import CustomAudioPlayer from '../../../components/custom_audio_player.js';
 
 import {
   Compose,
