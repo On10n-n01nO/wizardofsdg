@@ -28,6 +28,7 @@ const CustomAudioPlayer = ({ src, alt }) => {
       <audio
         ref={audioRef}
         src={src}
+        controls
       />
 
       {alt && <span className="sr-only">{alt}</span>}
