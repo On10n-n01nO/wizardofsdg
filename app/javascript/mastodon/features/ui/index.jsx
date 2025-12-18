@@ -32,9 +32,6 @@ import LoadingBarContainer from './containers/loading_bar_container';
 import ModalContainer from './containers/modal_container';
 import NotificationsContainer from './containers/notifications_container';
 
-import { useLocation } from 'react-router-dom';
-import CustomAudioPlayer from '../../../components/custom_audio_player.js';
-
 import {
   Compose,
   Status,
@@ -606,24 +603,5 @@ class UI extends PureComponent {
   }
 
 }
-
-const UI = () => {
-  const location = useLocation();
-
-  return (
-    <div className="ui">
-      {/* 기존 UI 구조 */}
-      <Navigation />
-      <MainContent />
-
-      {/* 오디오 플레이어: 환경설정 페이지에서는 숨김 */}
-      {location.pathname !== '/settings' && (
-        <div className="custom-audio-footer">
-          <CustomAudioPlayer src="/sounds/music.mp3" />
-        </div>
-      )}
-    </div>
-  );
-};
 
 export default connect(mapStateToProps)(injectIntl(withRouter(UI)));
