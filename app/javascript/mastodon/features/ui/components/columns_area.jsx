@@ -43,8 +43,6 @@ const componentMap = {
   'DIRECTORY': Directory,
 };
 
-import CustomAudioPlayer from '../../../components/custom_audio_player';
-
 export default class ColumnsArea extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -58,6 +56,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
     children: PropTypes.node,
   };
 
+  // Corresponds to (max-width: $no-gap-breakpoint + 285px - 1px) in SCSS
   mediaQuery = 'matchMedia' in window && window.matchMedia('(max-width: 1174px)');
 
   state = {
@@ -172,30 +171,15 @@ export default class ColumnsArea extends ImmutablePureComponent {
           const other  = params && params.other ? params.other : {};
 
           return (
-            <BundleContainer
-              key={column.get('uuid')}
-              fetchComponent={componentMap[column.get('id')]}
-              loading={this.renderLoading(column.get('id'))}
-              error={this.renderError}
-            >
-              {SpecificComponent => (
-                <SpecificComponent
-                  columnId={column.get('uuid')}
-                  params={params}
-                  multiColumn
-                  {...other}
-                />
-              )}
+            <BundleContainer key={column.get('uuid')} fetchComponent={componentMap[column.get('id')]} loading={this.renderLoading(column.get('id'))} error={this.renderError}>
+              {SpecificComponent => <SpecificComponent columnId={column.get('uuid')} params={params} multiColumn {...other} />}
             </BundleContainer>
           );
         })}
 
         {Children.map(children, child => cloneElement(child, { multiColumn: true }))}
-
-        <div className="columns-area__footer">
-          <CustomAudioPlayer src="/sounds/music.mp3" />
-        </div>
       </div>
     );
   }
+
 }
