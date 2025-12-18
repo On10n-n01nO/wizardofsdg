@@ -618,7 +618,7 @@ const UI = () => {
 
       {/* 오디오 플레이어: 환경설정 페이지에서는 숨김 */}
       {location.pathname !== '/settings' && (
-        <div className="columns-area__footer">
+        <div className="custom-audio-footer">
           <CustomAudioPlayer src="/sounds/music.mp3" />
         </div>
       )}
