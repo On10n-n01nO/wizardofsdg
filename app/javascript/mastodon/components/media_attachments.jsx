@@ -5,7 +5,6 @@ import noop from 'lodash/noop';
 
 import Bundle from 'mastodon/features/ui/components/bundle';
 import { MediaGallery, Video, Audio } from 'mastodon/features/ui/util/async-components';
-import CustomAudioPlayer from './custom_audio_player'; // ✅ import 위치 수정
 
 export default class MediaAttachments extends ImmutablePureComponent {
   static propTypes = {
@@ -53,10 +52,19 @@ export default class MediaAttachments extends ImmutablePureComponent {
       const description = audio.getIn(['translation', 'description']) || audio.get('description');
 
       return (
-        <CustomAudioPlayer
-          src={audio.get('url')}
-          alt={description}
-        />
+        <Bundle fetchComponent={Audio} loading={this.renderLoadingAudioPlayer}>
+          {Component => (
+            <Component
+              src={audio.get('url')}
+              alt={description}
+              lang={language}
+              width={width}
+              height={height}
+              inline
+              sensitive={status.get('sensitive')}
+            />
+          )}
+        </Bundle>
       );
     } else if (type === 'video') {
       const video = mediaAttachments.get(0);
