@@ -28,6 +28,8 @@ import ComposePanel from './compose_panel';
 import DrawerLoading from './drawer_loading';
 import NavigationPanel from './navigation_panel';
 
+import CustomAudioPlayer from '../../../components/custom_audio_player'; // ✅ 커스텀 오디오 플레이어 import
+
 const componentMap = {
   'COMPOSE': Compose,
   'HOME': HomeTimeline,
@@ -56,7 +58,6 @@ export default class ColumnsArea extends ImmutablePureComponent {
     children: PropTypes.node,
   };
 
-  // Corresponds to (max-width: $no-gap-breakpoint + 285px - 1px) in SCSS
   mediaQuery = 'matchMedia' in window && window.matchMedia('(max-width: 1174px)');
 
   state = {
@@ -138,31 +139,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
   };
 
   render () {
-    const { columns, children, singleColumn, isModalOpen } = this.props;
-    const { renderComposePanel } = this.state;
-
-    if (singleColumn) {
-      return (
-        <div className='columns-area__panels'>
-          <div className='columns-area__panels__pane columns-area__panels__pane--compositional'>
-            <div className='columns-area__panels__pane__inner'>
-              {renderComposePanel && <ComposePanel />}
-            </div>
-          </div>
-
-          <div className='columns-area__panels__main'>
-            <div className='tabs-bar__wrapper'><div id='tabs-bar__portal' /></div>
-            <div className='columns-area columns-area--mobile'>{children}</div>
-          </div>
-
-          <div className='columns-area__panels__pane columns-area__panels__pane--start columns-area__panels__pane--navigational'>
-            <div className='columns-area__panels__pane__inner'>
-              <NavigationPanel />
-            </div>
-          </div>
-        </div>
-      );
-    }
+    const { columns, children, isModalOpen } = this.props;
 
     return (
       <div className={`columns-area ${ isModalOpen ? 'unscrollable' : '' }`} ref={this.setRef}>
@@ -171,15 +148,34 @@ export default class ColumnsArea extends ImmutablePureComponent {
           const other  = params && params.other ? params.other : {};
 
           return (
-            <BundleContainer key={column.get('uuid')} fetchComponent={componentMap[column.get('id')]} loading={this.renderLoading(column.get('id'))} error={this.renderError}>
-              {SpecificComponent => <SpecificComponent columnId={column.get('uuid')} params={params} multiColumn {...other} />}
+            <BundleContainer
+              key={column.get('uuid')}
+              fetchComponent={componentMap[column.get('id')]}
+              loading={this.renderLoading(column.get('id'))}
+              error={this.renderError}
+            >
+              {SpecificComponent => (
+                <SpecificComponent
+                  columnId={column.get('uuid')}
+                  params={params}
+                  multiColumn
+                  {...other}
+                />
+              )}
             </BundleContainer>
           );
         })}
 
         {Children.map(children, child => cloneElement(child, { multiColumn: true }))}
+
+        {/* 데스크톱 사이드바 영역 */}
+        <div className='columns-area__panels__pane columns-area__panels__pane--start columns-area__panels__pane--navigational'>
+          <div className='columns-area__panels__pane__inner'>
+            <NavigationPanel />
+            <CustomAudioPlayer src="/audio/sample.mp3" alt="Sample audio" />
+          </div>
+        </div>
       </div>
     );
   }
-
 }
