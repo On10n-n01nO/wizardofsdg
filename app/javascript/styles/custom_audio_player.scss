@@ -1,1 +1,26 @@
+.custom-audio-player {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  background-color: var(--audio-bg-color);
+  color: var(--primary-text-color);
+  border-top: 1px solid var(--border-color);
 
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--primary-text-color);
+
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
+
+  audio {
+    display: none;
+  }
+}
