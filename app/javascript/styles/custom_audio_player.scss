@@ -1,15 +1,14 @@
-/* app/javascript/styles/custom_audio_player.scss */
+/* custom_audio_player.scss */
 
 .custom-audio-footer {
   position: fixed;
-  bottom: 16px;
-  left : 16px;      /* 오른쪽 하단을 원하면 right 사용 */
+  bottom: env(safe-area-inset-bottom, 16px);
+  left: env(safe-area-inset-left, 16px); /* 왼쪽 하단 */
   right: auto;
-  z-index: 99999;   /* 충분히 높게 설정 */
+  z-index: 99999;
   background: transparent;
-  border: none;
   padding: 0;
-  pointer-events: auto; /* 다른 레이어에 가려져 클릭 불가면 확인 */
+  pointer-events: auto;
 }
 
 /* 플레이어 본체 */
@@ -17,44 +16,40 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: rgba(0,0,0,0); /* 필요 시 반투명 배경 추가 가능 */
 }
 
-/* 버튼 스타일 및 접근성 */
+/* 버튼 스타일 */
 .custom-audio-player button {
   background: none;
   border: none;
-  padding: 4px;
-  font-size: 1.8rem;
+  padding: 8px;
+  font-size: 1.6rem;
   color: var(--accent-color);
   cursor: pointer;
-  transition: color 0.12s ease, transform 0.08s ease;
   line-height: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 6px;
+  transition: color 0.12s ease, transform 0.08s ease;
 }
 
-/* hover / active / focus */
 .custom-audio-player button:hover {
   color: var(--accent-color--hover);
 }
 .custom-audio-player button:active {
-  color: var(--accent-color--active);
   transform: scale(0.98);
 }
 .custom-audio-player button:focus {
   outline: 2px solid var(--accent-color--hover);
   outline-offset: 2px;
-  border-radius: 4px;
 }
 
-/* 오디오 엘리먼트 숨김 (컨트롤은 커스텀 버튼으로 대체) */
+/* 오디오 엘리먼트 숨김 */
 .custom-audio-player audio {
   display: none;
 }
 
-/* 스크린리더용 텍스트 (sr-only 규칙이 없으면 추가) */
+/* 스크린리더용 텍스트 */
 .sr-only {
   position: absolute !important;
   width: 1px;
@@ -67,14 +62,14 @@
   border: 0;
 }
 
-/* 모바일에서 숨기기 또는 축소 (원하면 숨김) */
+/* 모바일에서 숨김 (작은 화면) */
 @media (max-width: 640px) {
   .custom-audio-footer {
-    display: none; /* 모바일에서 보이지 않게 하려면 */
+    display: none;
   }
 }
 
-/* 사용자가 애니메이션을 줄이길 원하면 변환 최소화 */
+/* 애니메이션 최소화 선호자 대응 */
 @media (prefers-reduced-motion: reduce) {
   .custom-audio-player button {
     transition: none;
