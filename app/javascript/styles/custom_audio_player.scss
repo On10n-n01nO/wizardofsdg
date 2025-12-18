@@ -1,11 +1,12 @@
 .columns-area__footer {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: var(--background-color);     // 테마 배경색
-  border-top: 1px solid var(--border-color); // 테마 경계선 색
-  padding: 10px 16px;
+  bottom: 16px;   // 화면 아래에서 약간 띄우기
+  left: 16px;     // 화면 왼쪽에서 약간 띄우기
+  width: auto;    // 전체 폭 대신 내용 크기만
+  background: var(--background-color); // 테마 배경색
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 8px 12px;
   text-align: center;
   z-index: 1000;
 }
