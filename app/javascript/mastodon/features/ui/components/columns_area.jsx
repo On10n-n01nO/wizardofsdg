@@ -181,8 +181,8 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
         {Children.map(children, child => cloneElement(child, { multiColumn: true }))}
 
-    <div className="columns-area__footer">
-      <CustomAudioPlayer src="/audio/music.mp3"  />
-    </div>
-  </div>
+        <div className="columns-area__footer">
+          <CustomAudioPlayer src="/audio/music.mp3"  />
+        </div>
+      </div>
 );
