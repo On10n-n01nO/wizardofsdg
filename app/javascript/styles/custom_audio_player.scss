@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 16px;
   left: 16px;        // 원하는 위치 (오른쪽 하단이면 right: 16px)
-  z-index: 1000;
+  z-index: 9999;
   background: none;  // 박스 배경 제거
   border: none;      // 테두리 제거
   padding: 0;
