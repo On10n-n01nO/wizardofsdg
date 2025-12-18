@@ -31,7 +31,6 @@ import ColumnsAreaContainer from './containers/columns_area_container';
 import LoadingBarContainer from './containers/loading_bar_container';
 import ModalContainer from './containers/modal_container';
 import NotificationsContainer from './containers/notifications_container';
-import UI from './containers/UI';
 import {
   Compose,
   Status,
