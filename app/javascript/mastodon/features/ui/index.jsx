@@ -32,6 +32,22 @@ import LoadingBarContainer from './containers/loading_bar_container';
 import ModalContainer from './containers/modal_container';
 import NotificationsContainer from './containers/notifications_container';
 
+import { useLocation } from 'react-router-dom';
+import CustomAudioUI from './custom_audio';
+
+const UI = () => {
+  const location = useLocation();
+
+  return (
+    <div className="ui">
+      <Navigation />
+      <MainContent />
+
+      {location.pathname !== '/settings' && <CustomAudioUI />}
+    </div>
+  );
+};
+
 import {
   Compose,
   Status,
