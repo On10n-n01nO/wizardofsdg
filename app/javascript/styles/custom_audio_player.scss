@@ -1,1 +1,40 @@
+.columns-area__footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--background-color);     // 테마 배경색
+  border-top: 1px solid var(--border-color); // 테마 경계선 색
+  padding: 10px 16px;
+  text-align: center;
+  z-index: 1000;
+}
 
+.custom-audio-player {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  button {
+    background: var(--accent-color);       // 테마 포인트 색상
+    color: var(--background-color);        // 버튼 텍스트 색상
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: var(--accent-color--hover);
+    }
+
+    &:active {
+      background: var(--accent-color--active);
+    }
+  }
+
+  audio {
+    display: none;
+  }
+}
