@@ -1,7 +1,6 @@
-/* 사이드바 전용 오디오 플레이어 */
 .custom-audio-player {
-  position: absolute;       /* 부모 컨테이너 기준 */
-  bottom: 0;                /* 사이드바 하단에 고정 */
+  position: absolute;       /* 사이드바 내부 기준 */
+  bottom: 0;
   left: 0;
   width: 100%;              /* 사이드바 너비에 맞춤 */
   background: var(--background-color);
