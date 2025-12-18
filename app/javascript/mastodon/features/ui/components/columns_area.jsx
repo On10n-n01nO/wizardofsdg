@@ -43,6 +43,8 @@ const componentMap = {
   'DIRECTORY': Directory,
 };
 
+import CustomAudioPlayer from '../../../components/custom_audio_player';
+
 export default class ColumnsArea extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -183,3 +185,9 @@ export default class ColumnsArea extends ImmutablePureComponent {
   }
 
 }
+
+    <div className="columns-area__footer">
+      <CustomAudioPlayer src="/audio/music.mp3"  />
+    </div>
+  </div>
+);
