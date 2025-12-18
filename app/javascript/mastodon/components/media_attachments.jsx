@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
-
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import noop from 'lodash/noop';
 
 import Bundle from 'mastodon/features/ui/components/bundle';
-import { MediaGallery, Video, Audio } from 'mastodon/features/ui/util/async-components';
+import { MediaGallery, Video } from 'mastodon/features/ui/util/async-components';
+
+import CustomAudioPlayer from './custom_audio_player';
 
 export default class MediaAttachments extends ImmutablePureComponent {
 
@@ -42,14 +43,6 @@ export default class MediaAttachments extends ImmutablePureComponent {
     );
   };
 
-  renderLoadingAudioPlayer = () => {
-    const { height, width } = this.props;
-
-    return (
-      <div className='audio-player' style={{ height, width }} />
-    );
-  };
-
   render () {
     const { status, width, height } = this.props;
     const mediaAttachments = status.get('media_attachments');
@@ -59,29 +52,33 @@ export default class MediaAttachments extends ImmutablePureComponent {
       return null;
     }
 
+    // -----------------------------
+    // 🔊 AUDIO 분기 — CustomAudioPlayer로 교체됨
+    // -----------------------------
     if (mediaAttachments.getIn([0, 'type']) === 'audio') {
       const audio = mediaAttachments.get(0);
       const description = audio.getIn(['translation', 'description']) || audio.get('description');
 
       return (
-        <Bundle fetchComponent={Audio} loading={this.renderLoadingAudioPlayer} >
-          {Component => (
-            <Component
-              src={audio.get('url')}
-              alt={description}
-              lang={language}
-              width={width}
-              height={height}
-              poster={audio.get('preview_url') || status.getIn(['account', 'avatar_static'])}
-              backgroundColor={audio.getIn(['meta', 'colors', 'background'])}
-              foregroundColor={audio.getIn(['meta', 'colors', 'foreground'])}
-              accentColor={audio.getIn(['meta', 'colors', 'accent'])}
-              duration={audio.getIn(['meta', 'original', 'duration'], 0)}
-            />
-          )}
-        </Bundle>
+        <CustomAudioPlayer
+          src={audio.get('url')}
+          alt={description}
+          lang={language}
+          width={width}
+          height={height}
+          poster={audio.get('preview_url') || status.getIn(['account', 'avatar_static'])}
+          backgroundColor={audio.getIn(['meta', 'colors', 'background'])}
+          foregroundColor={audio.getIn(['meta', 'colors', 'foreground'])}
+          accentColor={audio.getIn(['meta', 'colors', 'accent'])}
+          duration={audio.getIn(['meta', 'original', 'duration'], 0)}
+        />
       );
-    } else if (mediaAttachments.getIn([0, 'type']) === 'video') {
+    }
+
+    // -----------------------------
+    // 🎥 VIDEO 분기 (기존 그대로)
+    // -----------------------------
+    if (mediaAttachments.getIn([0, 'type']) === 'video') {
       const video = mediaAttachments.get(0);
       const description = video.getIn(['translation', 'description']) || video.get('description');
 
@@ -104,22 +101,24 @@ export default class MediaAttachments extends ImmutablePureComponent {
           )}
         </Bundle>
       );
-    } else {
-      return (
-        <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} >
-          {Component => (
-            <Component
-              media={mediaAttachments}
-              lang={language}
-              sensitive={status.get('sensitive')}
-              defaultWidth={width}
-              height={height}
-              onOpenMedia={noop}
-            />
-          )}
-        </Bundle>
-      );
     }
-  }
 
+    // -----------------------------
+    // 🖼️ IMAGE / GALLERY 분기 (기존 그대로)
+    // -----------------------------
+    return (
+      <Bundle fetchComponent={MediaGallery} loading={this.renderLoadingMediaGallery} >
+        {Component => (
+          <Component
+            media={mediaAttachments}
+            lang={language}
+            sensitive={status.get('sensitive')}
+            defaultWidth={width}
+            height={height}
+            onOpenMedia={noop}
+          />
+        )}
+      </Bundle>
+    );
+  }
 }
