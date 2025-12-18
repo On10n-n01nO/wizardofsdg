@@ -28,8 +28,6 @@ import ComposePanel from './compose_panel';
 import DrawerLoading from './drawer_loading';
 import NavigationPanel from './navigation_panel';
 
-import CustomAudioPlayer from '../../../components/custom_audio_player'; // ✅ 오디오 플레이어 import
-
 const componentMap = {
   'COMPOSE': Compose,
   'HOME': HomeTimeline,
@@ -46,6 +44,7 @@ const componentMap = {
 };
 
 export default class ColumnsArea extends ImmutablePureComponent {
+
   static contextTypes = {
     router: PropTypes.object.isRequired,
   };
@@ -87,7 +86,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.singleColumn !== prevProps.singleColumn && !prevProps.singleColumn) {
+    if (this.props.singleColumn !== prevProps.singleColumn && !this.props.singleColumn) {
       this.node.addEventListener('wheel', this.handleWheel, supportsPassiveEvents ? { passive: true } : false);
     }
   }
@@ -121,6 +120,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
     if (typeof this._interruptScrollAnimation !== 'function') {
       return;
     }
+
     this._interruptScrollAnimation();
   };
 
@@ -174,9 +174,8 @@ export default class ColumnsArea extends ImmutablePureComponent {
 
         {!singleColumn && (
           <div className='columns-area__panels__pane columns-area__panels__pane--start columns-area__panels__pane--navigational'>
-            <div className='columns-area__panels__pane__inner' style={{ position: 'relative' }}>
+            <div className='columns-area__panels__pane__inner'>
               <NavigationPanel />
-              <CustomAudioPlayer src="/audio/music.mp3" />
             </div>
           </div>
         )}
