@@ -103,7 +103,7 @@ class NavigationPanel extends Component {
           <ColumnLink transparent to='/about' icon='ellipsis-h' text={intl.formatMessage(messages.about)} />
         </div>
 
-        {/* ✅ 여기 추가 */}
+        {/* ✅ 화면 전체 하단 고정 토큰 */}
         <CustomAudioPlayer />
 
         <NavigationPortal />
