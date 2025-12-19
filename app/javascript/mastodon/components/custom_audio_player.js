@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
-import './music_token.scss';
+import './custom_audio_player.scss';
 
-const MusicToken = () => {
+const CustomAudioPlayer = () => {
   const audioRef = useRef(null);
   const [playing, setPlaying] = useState(false);
 
@@ -22,11 +22,11 @@ const MusicToken = () => {
   }, []);
 
   return (
-    <div className="music-token" onClick={togglePlay}>
+    <div className="custom-audio-player" onClick={togglePlay}>
       {playing ? '⏸' : '▶'}
       <audio ref={audioRef} src="/sounds/music.mp3" />
     </div>
   );
 };
 
-export default MusicToken;
+export default CustomAudioPlayer;
