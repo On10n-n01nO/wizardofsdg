@@ -14,6 +14,7 @@ import DisabledAccountBanner from './disabled_account_banner';
 import FollowRequestsColumnLink from './follow_requests_column_link';
 import NotificationsCounterIcon from './notifications_counter_icon';
 import SignInBanner from './sign_in_banner';
+import CustomAudioPlayer from 'mastodon/components/custom_audio_player';
 
 const messages = defineMessages({
   home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
@@ -29,6 +30,16 @@ const messages = defineMessages({
   advancedInterface: { id: 'navigation_bar.advanced_interface', defaultMessage: 'Open in advanced web interface' },
   openedInClassicInterface: { id: 'navigation_bar.opened_in_classic_interface', defaultMessage: 'Posts, accounts, and other specific pages are opened by default in the classic web interface.' },
 });
+
+<div className='navigation-panel__legal'>
+  <hr />
+  <ColumnLink transparent to='/about' icon='ellipsis-h' text={intl.formatMessage(messages.about)} />
+</div>
+
+{/* 여기 추가 */}
+<CustomAudioPlayer />
+
+<NavigationPortal />
 
 class NavigationPanel extends Component {
 
