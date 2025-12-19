@@ -1,11 +1,10 @@
-import React, { useRef, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useRef, useState, useEffect } from 'react';
+import './music_token.scss';
 
-const CustomAudioPlayer = ({ src, alt }) => {
+const MusicToken = () => {
   const audioRef = useRef(null);
   const [playing, setPlaying] = useState(false);
 
-  // 재생 상태 토글
   const togglePlay = () => {
     if (!audioRef.current) return;
     if (playing) {
@@ -16,29 +15,18 @@ const CustomAudioPlayer = ({ src, alt }) => {
     setPlaying(!playing);
   };
 
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.loop = true; // 무한 반복
+    }
+  }, []);
+
   return (
-    <div className="custom-audio-player">
-      <button
-        onClick={togglePlay}
-        aria-label={playing ? 'Pause audio' : 'Play audio'}
-      >
-        {playing ? '⏸' : '▶'}
-      </button>
-
-      <audio
-        ref={audioRef}
-        src={src}
-        controls
-      />
-
-      {alt && <span className="sr-only">{alt}</span>}
+    <div className="music-token" onClick={togglePlay}>
+      {playing ? '⏸' : '▶'}
+      <audio ref={audioRef} src="/sounds/music.mp3" />
     </div>
   );
 };
 
-CustomAudioPlayer.propTypes = {
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string,
-};
-
-export default CustomAudioPlayer;
+export default MusicToken;
