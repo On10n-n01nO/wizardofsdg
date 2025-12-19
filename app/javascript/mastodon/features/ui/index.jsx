@@ -32,15 +32,6 @@ import LoadingBarContainer from './containers/loading_bar_container';
 import ModalContainer from './containers/modal_container';
 import NotificationsContainer from './containers/notifications_container';
 
-import CustomAudioPlayer from 'mastodon/components/custom_audio_player';
-
-const UI = () => (
-  <>
-    {/* 기존 UI */}
-    <CustomAudioPlayer />
-  </>
-);
-
 import {
   Compose,
   Status,
