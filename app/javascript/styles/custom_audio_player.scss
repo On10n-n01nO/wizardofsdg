@@ -1,18 +1,15 @@
+.navigation-panel {
+  position: relative;
+}
+
 .custom-audio-player {
-  position: fixed;
+  position: absolute;
   bottom: 0;
-  left: 0;
   width: 100%;
-  height: 40px;
-  background: transparent;
   text-align: center;
   font-size: 24px;
-  line-height: 40px;
   cursor: pointer;
-  z-index: 9999;
-
-  color: var(--primary-text-color); // 기본 테마 색상
-  user-select: none;
+  color: var(--primary-text-color);
 }
 
 html.theme-light .custom-audio-player {
