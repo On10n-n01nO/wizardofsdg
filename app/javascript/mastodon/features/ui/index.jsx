@@ -616,26 +616,26 @@ class UI extends PureComponent {
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
 
-          {/* 음악 버튼 추가 (환경설정 페이지에서는 숨김) */}
-          {!location.pathname.startsWith('/settings') && !location.pathname.startsWith('/preferences') && (
-            <>
-              <audio id="audioPlayer" src="/music.mp3" loop></audio>
-              <button onClick={this.togglePlay} className="music-button">
-                {isPlaying ? (
-                  // Pause 아이콘 (||)
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                    <rect x="6" y="4" width="4" height="16" />
-                    <rect x="14" y="4" width="4" height="16" />
-                  </svg>
-                ) : (
-                  // Play 아이콘 (▶)
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>
-                )}
-              </button>
-            </>
-          )}
+          {!location.pathname.startsWith('/settings') &&
+            !location.pathname.startsWith('/preferences') && (
+              <>
+                <audio id="audioPlayer" src="/music.mp3" loop></audio>
+                <button onClick={this.togglePlay} className="music-button">
+                  {isPlaying ? (
+                    // Pause 아이콘 (||)
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                      <rect x="6" y="4" width="4" height="16" />
+                      <rect x="14" y="4" width="4" height="16" />
+                    </svg>
+                  ) : (
+                    // Play 아이콘 (▶)
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                      <polygon points="5,3 19,12 5,21" />
+                    </svg>
+                  )}
+                </button>
+              </>
+            )}
         </div>
       </HotKeys>
     );
@@ -643,5 +643,3 @@ class UI extends PureComponent {
 }
 
 export default connect(mapStateToProps)(injectIntl(withRouter(UI)));
-
-<div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef}>
