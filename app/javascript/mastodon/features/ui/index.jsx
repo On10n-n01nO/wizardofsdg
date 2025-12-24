@@ -602,19 +602,19 @@ class UI extends PureComponent {
   };
 
    return (
-     <HotKeys ...>
-       <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
-         <Header />
+     <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
+        <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
+          <Header />
 
-         <SwitchingColumnsArea ...>
-           {children}
-         </SwitchingColumnsArea>
+          <SwitchingColumnsArea location={location} singleColumn={layout === 'mobile' || layout === 'single-column'}>
+            {children}
+          </SwitchingColumnsArea>
 
-         {layout !== 'mobile' && <PictureInPicture />}
-         <NotificationsContainer />
-         <LoadingBarContainer className='loading-bar' />
-         <ModalContainer />
-         <UploadArea ... />
+          {layout !== 'mobile' && <PictureInPicture />}
+          <NotificationsContainer />
+          <LoadingBarContainer className='loading-bar' />
+          <ModalContainer />
+          <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
 
           {/* 음악 버튼 추가 (환경설정 페이지에서는 숨김) */}
           {!location.pathname.startsWith('/settings') && !location.pathname.startsWith('/preferences') && (
