@@ -602,11 +602,11 @@ class UI extends PureComponent {
   };
 
    return (
-     <HotKeys …>
+     <HotKeys ...>
        <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
          <Header />
 
-         <SwitchingColumnsArea …>
+         <SwitchingColumnsArea ...>
            {children}
          </SwitchingColumnsArea>
 
@@ -614,7 +614,7 @@ class UI extends PureComponent {
          <NotificationsContainer />
          <LoadingBarContainer className='loading-bar' />
          <ModalContainer />
-         <UploadArea … />
+         <UploadArea ... />
 
           {/* 음악 버튼 추가 (환경설정 페이지에서는 숨김) */}
           {!location.pathname.startsWith('/settings') && !location.pathname.startsWith('/preferences') && (
