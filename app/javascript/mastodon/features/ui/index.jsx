@@ -621,7 +621,7 @@ class UI extends PureComponent {
               <>
                 <audio id="audioPlayer" src="/music.mp3" loop></audio>
                 <button onClick={this.togglePlay} className="music-button">
-                  {isPlaying ? (
+                  {this.state.isPlaying ? (
                     // Pause 아이콘 (||)
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
                       <rect x="6" y="4" width="4" height="16" />
