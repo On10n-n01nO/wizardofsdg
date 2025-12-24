@@ -6,6 +6,8 @@ import { defineMessages, injectIntl } from 'react-intl';
 import classNames from 'classnames';
 import { Redirect, Route, withRouter } from 'react-router-dom';
 
+import '../styles/music.css';
+
 import { connect } from 'react-redux';
 
 import { debounce } from 'lodash';
