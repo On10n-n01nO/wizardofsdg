@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { Component } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
+
 import { Link } from 'react-router-dom';
 
 import { WordmarkLogo } from 'mastodon/components/logo';
@@ -13,9 +14,6 @@ import DisabledAccountBanner from './disabled_account_banner';
 import FollowRequestsColumnLink from './follow_requests_column_link';
 import NotificationsCounterIcon from './notifications_counter_icon';
 import SignInBanner from './sign_in_banner';
-
-// ✅ 추가
-import CustomAudioPlayer from 'mastodon/components/custom_audio_player';
 
 const messages = defineMessages({
   home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
@@ -33,6 +31,7 @@ const messages = defineMessages({
 });
 
 class NavigationPanel extends Component {
+
   static contextTypes = {
     router: PropTypes.object.isRequired,
     identity: PropTypes.object.isRequired,
@@ -56,10 +55,10 @@ class NavigationPanel extends Component {
           <Link to='/' className='column-link column-link--logo'><WordmarkLogo /></Link>
 
           {transientSingleColumn ? (
-            <div className='switch-to-advanced'>
+            <div class='switch-to-advanced'>
               {intl.formatMessage(messages.openedInClassicInterface)}
               {" "}
-              <a href={`/deck${location.pathname}`} className='switch-to-advanced__toggle'>
+              <a href={`/deck${location.pathname}`} class='switch-to-advanced__toggle'>
                 {intl.formatMessage(messages.advancedInterface)}
               </a>
             </div>
@@ -103,13 +102,11 @@ class NavigationPanel extends Component {
           <ColumnLink transparent to='/about' icon='ellipsis-h' text={intl.formatMessage(messages.about)} />
         </div>
 
-        {/* ✅ 화면 전체 하단 고정 토큰 */}
-        <CustomAudioPlayer />
-
         <NavigationPortal />
       </div>
     );
   }
+
 }
 
 export default injectIntl(NavigationPanel);
