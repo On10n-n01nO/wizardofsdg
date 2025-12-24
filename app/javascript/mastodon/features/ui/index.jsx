@@ -556,6 +556,17 @@ class UI extends PureComponent {
   handleHotkeyGoToRequests = () => {
     this.context.router.history.push('/follow_requests');
   };
+  
+  class UI extends React.Component {
+  // 클래스 안에 메서드 정의
+  togglePlay = () => {
+    const audioPlayer = document.getElementById("audioPlayer");
+    if (audioPlayer.paused) {
+      audioPlayer.play();
+    } else {
+      audioPlayer.pause();
+    }
+  };
 
   render () {
     const { draggingOver } = this.state;
