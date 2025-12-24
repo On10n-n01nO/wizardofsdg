@@ -556,7 +556,23 @@ class UI extends PureComponent {
   handleHotkeyGoToRequests = () => {
     this.context.router.history.push('/follow_requests');
   };
-  
+
+  state = {
+    draggingOver: false,
+    isPlaying: false, // 음악 재생 상태 관리
+  };
+
+  // 음악 재생/정지 토글
+  togglePlay = () => {
+    const audioPlayer = document.getElementById("audioPlayer");
+    if (audioPlayer.paused) {
+      audioPlayer.play();
+      this.setState({ isPlaying: true });
+    } else {
+      audioPlayer.pause();
+      this.setState({ isPlaying: false });
+    }
+  };
 
   render () {
     const { draggingOver } = this.state;
@@ -584,22 +600,6 @@ class UI extends PureComponent {
       goToRequests: this.handleHotkeyGoToRequests,
     };
     
-      state = {
-    draggingOver: false,
-    isPlaying: false, // 음악 재생 상태 관리
-  };
-
-  // 음악 재생/정지 토글
-  togglePlay = () => {
-    const audioPlayer = document.getElementById("audioPlayer");
-    if (audioPlayer.paused) {
-      audioPlayer.play();
-      this.setState({ isPlaying: true });
-    } else {
-      audioPlayer.pause();
-      this.setState({ isPlaying: false });
-    }
-  };
 
    return (
      <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
