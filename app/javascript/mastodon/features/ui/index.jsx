@@ -583,25 +583,34 @@ class UI extends PureComponent {
       goToRequests: this.handleHotkeyGoToRequests,
     };
 
-    return (
-      <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
-        <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
-          <Header />
+   return (
+     <HotKeys …>
+       <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
+         <Header />
 
-          <SwitchingColumnsArea location={location} singleColumn={layout === 'mobile' || layout === 'single-column'}>
-            {children}
-          </SwitchingColumnsArea>
+         <SwitchingColumnsArea …>
+           {children}
+         </SwitchingColumnsArea>
 
-          {layout !== 'mobile' && <PictureInPicture />}
-          <NotificationsContainer />
-          <LoadingBarContainer className='loading-bar' />
-          <ModalContainer />
-          <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
-        </div>
-      </HotKeys>
-    );
-  }
+         {layout !== 'mobile' && <PictureInPicture />}
+         <NotificationsContainer />
+         <LoadingBarContainer className='loading-bar' />
+         <ModalContainer />
+         <UploadArea … />
+
+         {/* 여기 아래쪽에 버튼 추가 */}
+         {!location.pathname.startsWith('/settings') && (
+           <>
+             <audio id="audioPlayer" src="/music.mp3"></audio>
+             <button onClick={this.togglePlay} className="music-button">▶️</button>
+           </>
+         )}
+       </div>
+     </HotKeys>
+   );
 
 }
 
 export default connect(mapStateToProps)(injectIntl(withRouter(UI)));
+
+<div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef}>
