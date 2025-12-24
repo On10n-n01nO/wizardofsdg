@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 
 import { defineMessages, injectIntl } from 'react-intl';
 
@@ -557,16 +557,6 @@ class UI extends PureComponent {
     this.context.router.history.push('/follow_requests');
   };
   
-  class UI extends React.Component {
-  // 클래스 안에 메서드 정의
-  togglePlay = () => {
-    const audioPlayer = document.getElementById("audioPlayer");
-    if (audioPlayer.paused) {
-      audioPlayer.play();
-    } else {
-      audioPlayer.pause();
-    }
-  };
 
   render () {
     const { draggingOver } = this.state;
@@ -593,6 +583,23 @@ class UI extends PureComponent {
       goToMuted: this.handleHotkeyGoToMuted,
       goToRequests: this.handleHotkeyGoToRequests,
     };
+    
+      state = {
+    draggingOver: false,
+    isPlaying: false, // 음악 재생 상태 관리
+  };
+
+  // 음악 재생/정지 토글
+  togglePlay = () => {
+    const audioPlayer = document.getElementById("audioPlayer");
+    if (audioPlayer.paused) {
+      audioPlayer.play();
+      this.setState({ isPlaying: true });
+    } else {
+      audioPlayer.pause();
+      this.setState({ isPlaying: false });
+    }
+  };
 
    return (
      <HotKeys …>
@@ -609,17 +616,30 @@ class UI extends PureComponent {
          <ModalContainer />
          <UploadArea … />
 
-         {/* 여기 아래쪽에 버튼 추가 */}
-         {!location.pathname.startsWith('/settings') && (
-           <>
-             <audio id="audioPlayer" src="/music.mp3"></audio>
-             <button onClick={this.togglePlay} className="music-button">▶️</button>
-           </>
-         )}
-       </div>
-     </HotKeys>
-   );
-
+          {/* 음악 버튼 추가 (환경설정 페이지에서는 숨김) */}
+          {!location.pathname.startsWith('/settings') && !location.pathname.startsWith('/preferences') && (
+            <>
+              <audio id="audioPlayer" src="/music.mp3" loop></audio>
+              <button onClick={this.togglePlay} className="music-button">
+                {isPlaying ? (
+                  // Pause 아이콘 (||)
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                    <rect x="6" y="4" width="4" height="16" />
+                    <rect x="14" y="4" width="4" height="16" />
+                  </svg>
+                ) : (
+                  // Play 아이콘 (▶)
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                    <polygon points="5,3 19,12 5,21" />
+                  </svg>
+                )}
+              </button>
+            </>
+          )}
+        </div>
+      </HotKeys>
+    );
+  }
 }
 
 export default connect(mapStateToProps)(injectIntl(withRouter(UI)));
