@@ -26,8 +26,8 @@
 @media (min-width: 890px) and (max-width: 1174px) {
   .music-button {
     position: absolute;
-    left: 5px;
-    bottom: 40px;
+    left: 20px;
+    bottom: 60px;
   }
 }
 
