@@ -118,26 +118,28 @@ class NavigationPanel extends Component {
           <hr />
           <ColumnLink transparent to='/about' icon='ellipsis-h' text={intl.formatMessage(messages.about)} />
         </div>
+
         {!location.pathname.startsWith('/settings') &&
           !location.pathname.startsWith('/preferences') && (
             <div className="column-link music-control">
               <audio id="audioPlayer" src="/sounds/music.mp3" loop></audio>
               <button onClick={this.togglePlay} className="music-button">
                 {this.state.isPlaying ? (
-                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
                     <rect x="6" y="4" width="4" height="16" />
                     <rect x="14" y="4" width="4" height="16" />
                   </svg>
-               ) : (
-                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                   <polygon points="5,3 19,12 5,21" />
-                </svg>
-              )}
-             </button>
+                ) : (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                    <polygon points="5,3 19,12 5,21" />
+                  </svg>
+                )}
+              </button>
             </div>
-            
+        )}
+
         <NavigationPortal />
-      </div>
+      </div> 
     );
   }
 
