@@ -73,6 +73,10 @@ class NavigationPanel extends Component {
             <ColumnLink transparent to='/notifications' icon={<NotificationsCounterIcon className='column-link__icon' />} text={intl.formatMessage(messages.notifications)} />
             <FollowRequestsColumnLink />
 
+
+          {!location.pathname.startsWith('/settings') &&
+            !location.pathname.startsWith('/preferences') && (
+              <>
                 <audio id="audioPlayer" src="/sounds/music.mp3" loop></audio>
                 <button onClick={this.togglePlay} className="music-button">
                   {this.state.isPlaying ? (
@@ -89,7 +93,6 @@ class NavigationPanel extends Component {
                   )}
                 </button>
               </>
-          </>
         )}
         {(signedIn) && (
           <ColumnLink transparent to='/public/local' isActive={this.isFirehoseActive} icon='hashtag' text={intl.formatMessage(messages.firehose)} />
