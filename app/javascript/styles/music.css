@@ -13,11 +13,12 @@
 @media (min-width: 1025px) {
   .music-button {
     display: block;
-    left: 140px; 
+    left: calc(140px * (100vw / 1920)); 
+    /* 1920px 기준으로 140px → 창 줄이면 자동으로 줄어듦 */
   }
 }
 
-/* 패드 (중간 화면, 예: 880px ~ 1024px) */
+/* 패드 (중간 화면, 예: 860px ~ 1024px) */
 @media (min-width: 900px) and (max-width: 1024px) {
   .music-button {
     display: block;
@@ -25,7 +26,7 @@
   }
 }
 
-/* 모바일 (880px 이하) */
+/* 모바일 (860px 이하) */
 @media (max-width: 900px) {
   .music-button {
     display: none;
