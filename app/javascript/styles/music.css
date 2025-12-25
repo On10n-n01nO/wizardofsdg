@@ -11,7 +11,7 @@
 }
 
 /* 데스크탑에서만 보이게 */
-@media (min-width: 768px) {
+@media (min-width: 840px) {
   .music-button {
     display: block;
   }
