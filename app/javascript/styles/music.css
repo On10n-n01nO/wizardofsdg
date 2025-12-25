@@ -13,19 +13,19 @@
 @media (min-width: 1025px) {
   .music-button {
     display: block;
-    left: 150px; 
+    left: 140px; 
   }
 }
 
-/* 패드 (중간 화면, 예: 900px ~ 1024px) */
+/* 패드 (중간 화면, 예: 880px ~ 1024px) */
 @media (min-width: 900px) and (max-width: 1024px) {
   .music-button {
     display: block;
-    left: calc(150px - 20px); /* calc()로 계산 */
+    left: 20px; /* calc()로 계산 */
   }
 }
 
-/* 모바일 (900px 이하) */
+/* 모바일 (880px 이하) */
 @media (max-width: 900px) {
   .music-button {
     display: none;
