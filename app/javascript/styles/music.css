@@ -17,8 +17,6 @@
   }
 }
 
-@media (min-width: 1200px) { 
-  .music-button { left: 240px; } }
 
 /* 낮 테마 (기본) */
 body.theme-default .music-button svg {
