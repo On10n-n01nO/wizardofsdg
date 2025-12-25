@@ -10,14 +10,14 @@
 }
 
 /* 데스크탑 (넓은 화면) */
-@media (min-width: 1025px) {
+@media (min-width: 1174px) {
   .music-button {
     display: block;
-    left: calc(100vw * 140 / 1920);
+    left: calc(100vw * 150 / 1920);
   }
 }
 
-/* 패드 (중간 화면, 예: 860px ~ 1024px) */
+/* 패드 (중간 화면, 예: 889px ~ 1174px) */
 @media (min-width: 900px) and (max-width: 1024px) {
   .music-button {
     display: block;
@@ -25,7 +25,7 @@
   }
 }
 
-/* 모바일 (860px 이하) */
+/* 모바일 (889px 이하) */
 @media (max-width: 900px) {
   .music-button {
     display: none;
