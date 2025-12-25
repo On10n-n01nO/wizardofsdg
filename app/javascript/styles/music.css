@@ -18,7 +18,7 @@
 }
 
 /* 패드 (중간 화면, 예: 889px ~ 1174px) */
-@media (min-width: 900px) and (max-width: 1024px) {
+@media (min-width: 889px) and (max-width: 1174px) {
   .music-button {
     display: block;
     left: 20px; /* calc()로 계산 */
@@ -26,7 +26,7 @@
 }
 
 /* 모바일 (889px 이하) */
-@media (max-width: 900px) {
+@media (max-width: 889px) {
   .music-button {
     display: none;
   }
