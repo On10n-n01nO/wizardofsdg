@@ -13,7 +13,7 @@
 @media (min-width: 1174px) {
   .music-button {
     display: block;
-    left: calc(100vw * 150 / 1920);
+    left: calc(100vw * 160 / 1920);
   }
 }
 
