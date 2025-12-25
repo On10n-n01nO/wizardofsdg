@@ -1,3 +1,8 @@
+.navigation-panel {
+  position: relative; 
+  height: 100%; 
+}
+
 .music-button {
   background: none;
   border: none;
@@ -6,9 +11,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: auto;      /* 자동으로 아래로 밀림 */
-  margin-bottom: 20px;   /* 하단에서 20px 띄우기 */
+  position: absolute;
   left: 5px;
+  bottom: 20px;   /* 하단에서 20px 띄우기 */
 }
 
 
