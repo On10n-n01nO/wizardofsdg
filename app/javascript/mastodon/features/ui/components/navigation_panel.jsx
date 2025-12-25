@@ -32,7 +32,7 @@ const messages = defineMessages({
 
 class NavigationPanel extends Component {
 
-    state = {
+  state = {
     isPlaying: false,
   };
 
