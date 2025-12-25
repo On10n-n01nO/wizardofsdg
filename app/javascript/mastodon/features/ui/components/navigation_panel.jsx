@@ -32,6 +32,20 @@ const messages = defineMessages({
 
 class NavigationPanel extends Component {
 
+    state = {
+    isPlaying: false,
+  };
+
+  togglePlay = () => {
+    const audio = document.getElementById("audioPlayer");
+    if (this.state.isPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    this.setState({ isPlaying: !this.state.isPlaying });
+  };
+  
   static contextTypes = {
     router: PropTypes.object.isRequired,
     identity: PropTypes.object.isRequired,
