@@ -18,11 +18,11 @@
 }
 
 /* 낮 테마 (기본) */
-.theme-light .music-button svg {
+.theme-ui-light .music-button svg {
   fill: #333;                 /* 어두운 아이콘 */
 }
 
 /* 밤 테마 */
-.theme-dark .music-button svg {
+.theme-ui-dark .music-button svg {
   fill: #eee;                 /* 밝은 아이콘 */
 }
