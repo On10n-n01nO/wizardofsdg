@@ -13,8 +13,7 @@
 @media (min-width: 1025px) {
   .music-button {
     display: block;
-    left: calc(140px * (100vw / 1920)); 
-    /* 1920px 기준으로 140px → 창 줄이면 자동으로 줄어듦 */
+    left: calc(100vw * 140 / 1920);
   }
 }
 
