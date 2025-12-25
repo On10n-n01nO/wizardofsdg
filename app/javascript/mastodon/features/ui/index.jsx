@@ -616,9 +616,6 @@ class UI extends PureComponent {
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
 
-          {!location.pathname.startsWith('/settings') &&
-            !location.pathname.startsWith('/preferences') && (
-            )}
         </div>
       </HotKeys>
     );
