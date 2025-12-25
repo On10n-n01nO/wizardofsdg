@@ -7,7 +7,8 @@
   align-items: center;
   justify-content: center;
   position: relative;   /* 사이드바 메뉴 안에서 상대 위치 */
-  left: 15px;           /* 아이콘을 왼쪽으로 붙이기 */
+  left: 5px;           /* 아이콘을 왼쪽으로 붙이기 */
+  botoom: 20px
 }
 
 /* 데스크탑 (넓은 화면) */
