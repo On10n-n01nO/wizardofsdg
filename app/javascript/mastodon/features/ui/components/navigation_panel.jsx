@@ -69,10 +69,10 @@ class NavigationPanel extends Component {
           <Link to='/' className='column-link column-link--logo'><WordmarkLogo /></Link>
 
           {transientSingleColumn ? (
-            <div classname='switch-to-advanced'>
+            <div className='switch-to-advanced'>
               {intl.formatMessage(messages.openedInClassicInterface)}
               {" "}
-              <a href={`/deck${location.pathname}`} class='switch-to-advanced__toggle'>
+              <a href={`/deck${location.pathname}`} className='switch-to-advanced__toggle'>
                 {intl.formatMessage(messages.advancedInterface)}
               </a>
             </div>
@@ -92,22 +92,22 @@ class NavigationPanel extends Component {
         
         {!location.pathname.startsWith('/settings') &&
           !location.pathname.startsWith('/preferences') && (
-            <>
+            <div className="column-link music-control">
               <audio id="audioPlayer" src="/sounds/music.mp3" loop></audio>
               <button onClick={this.togglePlay} className="music-button">
                 {this.state.isPlaying ? (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
                     <rect x="6" y="4" width="4" height="16" />
                     <rect x="14" y="4" width="4" height="16" />
                   </svg>
-                 )  : (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>
-                )}
-              </button>
-            </>
-        )}      {/* ← 여기서 괄호 닫기 */}
+               ) : (
+                 <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                   <polygon points="5,3 19,12 5,21" />
+                </svg>
+              )}
+             </button>
+            </div>
+        )}
         
         {(signedIn) && (
           <ColumnLink transparent to='/public/local' isActive={this.isFirehoseActive} icon='hashtag' text={intl.formatMessage(messages.firehose)} />
