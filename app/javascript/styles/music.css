@@ -1,7 +1,7 @@
 .music-button {
   position: fixed;
   bottom: 20px;
-  left: 160px;
+  left: 140px;
   background: none;           /* 배경색 없음 */
   border: none;
   padding: 10px;
@@ -16,6 +16,9 @@
     display: block;
   }
 }
+
+@media (min-width: 1200px) { 
+  .music-button { left: 240px; } }
 
 /* 낮 테마 (기본) */
 body.theme-default .music-button svg {
