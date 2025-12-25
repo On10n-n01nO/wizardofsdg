@@ -18,14 +18,14 @@
 
 
 /* 데스크탑 (넓은 화면) */
-@media (min-width: 1174px) {
+@media (min-width: 1175px) {
   .music-button {
     display: flex;      /* 데스크탑에서 보이도록 */
   }
 }
 
 /* 패드 (중간 화면, 예: 889px ~ 1174px) */
-@media (min-width: 889px) and (max-width: 1174px) {
+@media (min-width: 890px) and (max-width: 1174px) {
   .music-button {
     display: flex;      /* 패드에서도 보이도록 */
   }
