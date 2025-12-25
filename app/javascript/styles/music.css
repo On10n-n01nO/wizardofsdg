@@ -1,18 +1,34 @@
 .music-button {
   position: fixed;
   bottom: 20px;
-  left: 150px;
   background: none;
   border: none;
+  padding: 10px;
   cursor: pointer;
   z-index: 1000;
+  display: none;
 }
 
-
-/* 데스크탑에서만 보이게 */
-@media (min-width: 900px) {
+/* 데스크탑 (넓은 화면) */
+@media (min-width: 1025px) {
   .music-button {
     display: block;
+    left: 150px; 
+  }
+}
+
+/* 패드 (중간 화면, 예: 900px ~ 1024px) */
+@media (min-width: 900px) and (max-width: 1024px) {
+  .music-button {
+    display: block;
+    left: calc(150px - 20px); /* calc()로 계산 */
+  }
+}
+
+/* 모바일 (900px 이하) */
+@media (max-width: 900px) {
+  .music-button {
+    display: none;
   }
 }
 
