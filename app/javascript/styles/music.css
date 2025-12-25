@@ -1,46 +1,42 @@
 .music-button {
-  position: fixed;
-  bottom: 20px;
   background: none;
   border: none;
   padding: 10px;
   cursor: pointer;
-  z-index: 1000;
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;   /* 사이드바 메뉴 안에서 상대 위치 */
+  left: 15px;           /* 아이콘을 왼쪽으로 붙이기 */
 }
 
 /* 데스크탑 (넓은 화면) */
 @media (min-width: 1174px) {
   .music-button {
-    display: block;
-    position: absolute;
-    left: calc(var(--width-side-panel) + 15px);
+    display: flex;      /* 데스크탑에서 보이도록 */
   }
 }
 
 /* 패드 (중간 화면, 예: 889px ~ 1174px) */
 @media (min-width: 889px) and (max-width: 1174px) {
   .music-button {
-    display: block;
-    left: calc(var(--width-side-panel) + 15px);
+    display: flex;      /* 패드에서도 보이도록 */
   }
 }
 
 /* 모바일 (889px 이하) */
 @media (max-width: 889px) {
   .music-button {
-    display: none;
+    display: none;      /* 모바일에서는 숨기기 */
   }
 }
 
-
 /* 낮 테마 (기본) */
 body.theme-default .music-button svg {
-  fill: #333; /* 밝은 테마용 아이콘 색상 */
+  fill: #333;
 }
-
 
 /* 밤 테마 */
 body.theme-dark .music-button svg {
-  fill: #eee; /* 어두운 테마용 아이콘 색상 */
+  fill: #eee;
 }
