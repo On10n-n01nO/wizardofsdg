@@ -1,14 +1,28 @@
 .music-button {
-  position: fixed;       /* 화면에 고정 */
-  bottom: 20px;          /* 화면 아래에서 20px */
-  left: 20px;            /* 화면 왼쪽에서 20px */
-  background-color: #333;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: none;           /* 배경색 없음 */
   border: none;
-  border-radius: 50%;
   padding: 10px;
   cursor: pointer;
-  z-index: 1000;         /* 다른 UI 위에 표시 */
+  z-index: 1000;
+  display: none;              /* 기본은 숨김 */
 }
-.music-button svg {
-  fill: white;
+
+/* 데스크탑에서만 보이게 */
+@media (min-width: 768px) {
+  .music-button {
+    display: block;
+  }
+}
+
+/* 낮 테마 (기본) */
+.theme-light .music-button svg {
+  fill: #333;                 /* 어두운 아이콘 */
+}
+
+/* 밤 테마 */
+.theme-dark .music-button svg {
+  fill: #eee;                 /* 밝은 아이콘 */
 }
