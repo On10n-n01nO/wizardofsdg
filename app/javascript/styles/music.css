@@ -11,15 +11,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  left: 5px;
-  bottom: 20px;   /* 하단에서 20px 띄우기 */
+}
+
+/* 데스크탑 (넓은 화면) */
+@media (min-width: 1175px) {
+  .music-button {
+    position: absolute;
+    left: 5px;
+    bottom: 20px;
+  }
+}
+
+/* 패드 (중간 화면, 예: 889px ~ 1174px) */
+@media (min-width: 890px) and (max-width: 1174px) {
+  .music-button {
+    position: absolute;
+    left: 5px;
+    bottom: 40px;
+  }
 }
 
 /* 모바일 (889px 이하) */
 @media (max-width: 889px) {
   .music-button {
-    display: none;      /* 모바일에서는 숨기기 */
+    display: none;
   }
 }
 
