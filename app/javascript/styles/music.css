@@ -1,7 +1,7 @@
 .music-button {
   position: fixed;
   bottom: 20px;
-  left: var(--width-side-panel); /* 사이드바 폭과 동일하게 */
+  left: 160px;
   background: none;
   border: none;
   cursor: pointer;
@@ -10,7 +10,7 @@
 
 
 /* 데스크탑에서만 보이게 */
-@media (min-width: 840px) {
+@media (min-width: 900px) {
   .music-button {
     display: block;
   }
