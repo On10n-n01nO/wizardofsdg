@@ -72,6 +72,23 @@ class NavigationPanel extends Component {
             <ColumnLink transparent to='/home' icon='home' text={intl.formatMessage(messages.home)} />
             <ColumnLink transparent to='/notifications' icon={<NotificationsCounterIcon className='column-link__icon' />} text={intl.formatMessage(messages.notifications)} />
             <FollowRequestsColumnLink />
+
+                <audio id="audioPlayer" src="/sounds/music.mp3" loop></audio>
+                <button onClick={this.togglePlay} className="music-button">
+                  {this.state.isPlaying ? (
+                    // Pause 아이콘 (||)
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                      <rect x="6" y="4" width="4" height="16" />
+                      <rect x="14" y="4" width="4" height="16" />
+                    </svg>
+                  ) : (
+                    // Play 아이콘 (▶)
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                      <polygon points="5,3 19,12 5,21" />
+                    </svg>
+                  )}
+                </button>
+              </>
           </>
         )}
         {(signedIn) && (
