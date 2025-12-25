@@ -14,7 +14,7 @@
   .music-button {
     display: block;
     position: absolute;
-    left: clamp(20px, 8vw, 160px);
+    left: calc(var(--width-side-panel) + 15px);
   }
 }
 
@@ -22,7 +22,7 @@
 @media (min-width: 889px) and (max-width: 1174px) {
   .music-button {
     display: block;
-    left: 20px; /* calc()로 계산 */
+    left: calc(var(--width-side-panel) + 15px);
   }
 }
 
