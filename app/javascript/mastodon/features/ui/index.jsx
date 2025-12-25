@@ -619,7 +619,7 @@ class UI extends PureComponent {
           {!location.pathname.startsWith('/settings') &&
             !location.pathname.startsWith('/preferences') && (
               <>
-                <audio id="audioPlayer" src="/music.mp3" loop></audio>
+                <audio id="audioPlayer" src="/sounds/music.mp3" loop></audio>
                 <button onClick={this.togglePlay} className="music-button">
                   {this.state.isPlaying ? (
                     // Pause 아이콘 (||)
